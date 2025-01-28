@@ -594,6 +594,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
+
 	if(is_int(&Received))
 	{
 		set_point = atoi(&Received)/10.0;
@@ -606,6 +607,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
+
 	if(htim == &htim7)
 	{
 	HAL_GPIO_TogglePin(LD1_GPIO_Port, LD1_Pin);
@@ -625,13 +627,14 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	sprintf(lcd_temp, "C. temp.: %f", temperature);
 	sprintf(lcd_set_point, "S. point: %f", set_point);
 
-	lcd_put_cur(0, 0);
-	lcd_send_string(lcd_temp);
-
-	lcd_put_cur(1, 0);
-	lcd_send_string(lcd_set_point);
+//	lcd_put_cur(0, 0);
+//	lcd_send_string(lcd_temp);
+//
+//	lcd_put_cur(1, 0);
+//	lcd_send_string(lcd_set_point);
 	sprintf((char*)uart_temp, "\n%f", temperature);
 	HAL_UART_Transmit(&huart3, uart_temp, strlen((char*)uart_temp), 50);
+
 
 	}
 }
