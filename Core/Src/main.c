@@ -627,11 +627,11 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	sprintf(lcd_temp, "C. temp.: %f", temperature);
 	sprintf(lcd_set_point, "S. point: %f", set_point);
 
-//	lcd_put_cur(0, 0);
-//	lcd_send_string(lcd_temp);
-//
-//	lcd_put_cur(1, 0);
-//	lcd_send_string(lcd_set_point);
+	lcd_put_cur(0, 0);
+	lcd_send_string(lcd_temp);
+
+	lcd_put_cur(1, 0);
+	lcd_send_string(lcd_set_point);
 	sprintf((char*)uart_temp, "\n%f", temperature);
 	HAL_UART_Transmit(&huart3, uart_temp, strlen((char*)uart_temp), 50);
 
